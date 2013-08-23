@@ -21,7 +21,7 @@ Use a VirtualBox image with Vagrant to:
 
 ### Configuration
 1. Put your custom `extensions.conf` and `sip.conf` in the `conf/secret` directory.
-	1. When you change them, run `configure-asterisk.sh` in the guest box to have them copied over to `/etc/asterisk/conf`.
+	1. When you change them, use  `configure-asterisk.sh` in the guest box to have them copied over to `/etc/asterisk`.
 
 ## Usage
 ### Setup
@@ -32,15 +32,15 @@ git clone https://github.com/DanielJomphe/asterisk-box
 cd asterisk-box
 vagrant up
 vagrant reload # apply updated VirtualBox Guest Additions
-vagrant ssh # terminal access to the guest box
+vagrant ssh    # terminal access to the guest box
 ```
 In the guest box, run one of the following options (or pass in the arguments of your choice):
 
 ```shell
-install-asterisk.sh certified-asterisk 11.2    # the latest certified 11.2-X LTS,   presently 11.2-cert1
-install-asterisk.sh certified-asterisk 1.8.15  # the latest certified 1.8.15-X LTS, presently 1.8.15-cert2
-install-asterisk.sh asterisk 11                # the latest 11.X LTS,               presently 11.5.0
-install-asterisk.sh asterisk 1.8               # the latest 1.8.X LTS,              presently 1.8.23.0
+install-asterisk.sh certified-asterisk 11.2    # latest certified LTS 11.2-X:   ex: 11.2-cert1
+install-asterisk.sh certified-asterisk 1.8.15  # latest certified LTS 1.8.15-X: ex: 1.8.15-cert2
+install-asterisk.sh           asterisk 11      # latest           LTS 11.X:     ex: 11.5.0
+install-asterisk.sh           asterisk 1.8     # latest           LTS 1.8.X:    ex: 1.8.23.0
 
 # at some point, it may ask for your country phone code (use `1` in North America)
 ```
@@ -65,12 +65,13 @@ At present time:
 1. Only the following **configuration files** are automatically customized:
 	* `extensions.conf`
 	* `sip.conf`
+	* The `configure-asterisk.sh` script used for customizing the `conf` files is very crudely implemented.
 2. Starting up Asterisk is a manual operation.
 
 These limitations are **very** easy to remove. Just improve the `Vagrantfile` and `bootstrap/**` scripts.
 
 ## Alternatives
-Some linux distributions make available Asterisk packages that might meet your needs.
+Some linux distributions make available certain Asterisk packages that might meet your needs.
 
 The following discussion is centered not on this asterisk-box's sole needs, but on the general infrastructure automation practices I wish to put in place for my projects. I provide it here because it may affect this solution in the future.
 
@@ -97,8 +98,10 @@ Use for your development needs.
 
 DON'T deploy this to production.
 
+All sorts of (non-)catchy sentences like that.
+
 ## Contributing
-At present time, maintain your own fork.
+At present time, maintain your own fork...!
 
 I might later open up to Wiki updates, Issues, and Pull Requests. Expect to have to sign a CA.
 
